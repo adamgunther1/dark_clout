@@ -19,6 +19,7 @@
 //= require materialize
 //= require materialize-sprockets
 //= require materialize/extras/nouislider
+//= require nouislider
 //= require_tree .
 
 $(function() {

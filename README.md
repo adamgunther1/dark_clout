@@ -1,74 +1,93 @@
-# GRAB BAG
-## The hottest new way to store and share your files
+# GRAB BAG - Dark Clout Edition
+## How much information are you giving up?
 
-View it live at: https://grab-bag-1701.herokuapp.com/
+![Dark Clout logo](https://github.com/squeemishly/dark_clout/blob/readme_update/app/assets/images/dark-clout.png?raw=true)
 
 ## Overview
 
-The goal of this project was to 'clone' the base functionality of Dropbox.
+The goal of Dark Clout is to show users exactly what type of information they are giving up when they choose to use an upload service and login with Facebook. Building upon the original functionality of Grab Bag, the new dashboard highlights how much information Facebook gives developers with the seemingly harmless public information permission. Using background workers and easy to understand charts, Dark Clout gathers and exposes your virtual profile.
+
+This brownfield project, previously named [Grab Bag](https://github.com/turingschool-projects/grab_bag), was designed to mimic the functionality of Dropbox by giving users the ability to upload images and files using the S3 Bucket.  
+
+### Stack
+This site was built with Javascript, JQeury, SASS, Materialize, ChartsJS, AM Charts, Postgresql, Rails 5.1.2, Ruby 2.4.1, Redis, Sidekiq and the Facebook API.
 
 ### Setup
 
 To set up a local copy of this project, perform the following:
 
-* Clone the repository: `git clone https://github.com/glassjoseph/grab_bag.git`
+* Clone the repository: `git clone https://github.com/squeemishly/dark_clout`
 * `cd` into the project's directory
 * Run `bundle install`
-* Run `bundle exec rake db:{create,migrate,seed}` to set up the database locally and seed it with files, folders, users, and comments
-* To login as an admin (in development), use these credentials - username: admin1, password: password
-* Run the application in the dev environment with `rails s`
+* Run `bundle exec rake db:{create,migrate,seed}`
+* run `bundle exec figaro install`
+* run `brew update`
+* Check java version with `java -version`
+* If you don't have java installed go to http://www.oracle.com/technetwork/java/javase/downloads/index.html
+* Once java is installed run `rvm install jruby`
+* Run `jruby --version` to ensure it is installed
+* Run `rails s` and follow the prompts and restart computer
+* Run `bundle update`
+* Run `bundle install`
+
+### Environment Variables
+You will need to procure your own environment variables for the following:
+* facebook_key:
+* facebook_secret:
+* facebook_name:
+* facebook_email:
+* facebook_token:
+* facebook_uid:
+* AWS_ACCESS_KEY_ID:
+* AWS_SECRET_ACCESS_KEY:
+* S3_BUCKET:
+
+You can setup your redis keys as the standard:
+* REDIS_HOST: 'localhost'
+* REDIS_PORT: '6379'
+
+### Running the Application
+
+* To run the application in a development environment, you'll need several tabs in your terminal:
+* `rails s`
+* `redis-server`
+* `bundle exec sidekiq`
 * Visit http://localhost:3000/ and enjoy
 
 ### Schema
 
 A visual representation of the schema is here:
-![schema pic](app/assets/images/24_may_schema.png?raw=true)
-
+![schema pic](app/assets/images/30_july_schema.png?raw=true)
 
 ### Features
 
-#### Visitor
- * A visitor is an un-logged in user
- * He can view public folders, and that's about it
+#### Dark Clout
+ * A user can view a breakdown of:
+    * the most popular adjectives found in the users uploaded documents.
+    * all files uploaded and the filetype breakdown.
+    * the camera model breakdown.
+    * the percentage of nouns that you use that conform to British vs American spelling.
+    * your top 5 'Likers' on Facebook
+    * your top 5 'Commenters' on Facebook
+    * your top 5 'Taggers' on Facebook
+    * your photos locations broken up by year and displayed on a map
+    * your photo and comment activity broke up by year. 
+    
+ * For a full breakdown of features, visit the [original repo](https://github.com/turingschool-projects/grab_bag):
+ 
+### Pictures
 
-#### User
- * A user can sign up for an account via Facebook or create one manually
- * Regardless of signup method, they must provide a username and phone number for Two Factor Authentication purposes
- * A user can view and edit their details
- * A user can reset their password with a text confirmation (via Twilio)
- * A user is created with a home folder, via a private `make_folder` method. `@user.home` will return this folder
- * A user has `owned_folders`, a relationship through `Folder`, through the foreign key `user_id`
+![storage stats](https://github.com/squeemishly/dark_clout/blob/readme_update/app/assets/images/storage_stats.jpg?raw=true)
 
-#### Admin
- * An admin can make other users into admins, deactivate users, and delete files and folders
-
-#### Folder
- * Every user is created with a home folder
- * When a new folder is created, its entire path is stored in the database
- * Folders can be created as public or private
- * Folders can be shared by entering another user's email, which sends that user an email invite link
- * Folders have a method `children`. This includes both other folders and binaries stored in that folder
- * Folders have a method `url`, which concatenates a complete route by combining the `owner.username` and the `route`
-
-#### File (in the schema, Binary)
- * Files can be uploaded or downloaded if they belong to that user, or if they are in a folder shared with that user
- * Files can be previewed on the page
- * Binary has a `url` method which builds the url by combining the `folder.url`, `name`, and `extension`
-
-#### Comment
- * A user can leave comments on any file that is owned or shared with him
-
-#### Like
- * A user can like a comment or a file to which he has access, and can like it as many times as he wants, so feel free to go a bit crazy
- * Related to Binaries and Comments through a polymorphic association
+![fb photos comments](https://github.com/squeemishly/dark_clout/blob/readme_update/app/assets/images/comments_photos_chart.jpg?raw=true)
 
 ### Design
-* We used [Bootstrap](http://getbootstrap.com/) to style our website.
+* [Materialize](http://materializecss.com/)
 
-### Test Suite
+### Contributors
 
-* The test suite tests the application on multiple levels. To run all of the tests, run `rspec` from the terminal in the main directory of the project. The feature tests (integration tests) rely mainly on the [capybara gem](https://github.com/jnicklas/capybara) for navigating the various application views.
-
-### Dependencies
-
-* This application depends on many ruby gems, all of which are found in the `Gemfile` and can be installed by running `bundle install` from the terminal in the main directory of the project.
+* [Natalia Colomé](https://github.com/nmcolome)
+* [Adam Gunther](https://github.com/adamgunther1)
+* [Mason Holland](https://github.com/MasonHolland)
+* [Carl Richmond](https://github.com/ACC25)
+* [Kristen (squee) Mueller](https://github.com/squeemishly)
