@@ -77,9 +77,11 @@ A visual representation of the schema is here:
  
 ### Pictures
 
-![storage stats](https://github.com/squeemishly/dark_clout/blob/readme_update/app/assets/images/storage_stats.jpg?raw=true)
+![storage stats](https://github.com/adamgunther1/dark_clout/blob/readme_update/app/assets/images/storage_stats.jpg?raw=true)
 
-![fb photos comments](https://github.com/squeemishly/dark_clout/blob/readme_update/app/assets/images/comments_photos_chart.jpg?raw=true)
+![fb photos comments](https://github.com/adamgunther1/dark_clout/blob/readme_update/app/assets/images/comments_photos_chart.jpg?raw=true)
+
+![photos mapped by year](https://github.com/adamgunther1/dark_clout/blob/master/app/assets/images/dark_clout_photo_map.gif)
 
 ### Design
 * [Materialize](http://materializecss.com/)
